@@ -10,6 +10,11 @@ run_analysis <- function() {
       ## 4. Appropriately labels the data set with descriptive activity names. 
       ## 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
       
+      ##EXAMPLE USAGE
+      ## library(xlsx)
+      ## data <- run_analysis()
+      ## write.xlsx(data$aggregated_measures, "aggregated_measures.xlsx", col.names = TRUE, row.names = FALSE,showNA=FALSE)
+      
       
 #load the activity labels
 # needed for TASK 3 Uses descriptive activity names to name the activities in the data set
@@ -73,8 +78,8 @@ colnames(all_subjects_and_activities)[3] <- "activity"
 all_subjects_and_activities <- subset( all_subjects_and_activities, select = c("activity", "subject") )
 #fill the missing combinations
 measurements_for_aggregation <- merge(all_subjects_and_activities,measurements, all.x = TRUE, all.y=FALSE  )
-
+#calculate the averages for each varaible for each activity and each subject
 aggregated_measures <- aggregate(. ~ activity + subject, data = measurements_for_aggregation, FUN = mean, na.action=na.pass)
-
+#retunr 2 data sets (measurements -> basic beasurements, aggregated_measures -> tidy data set with the mean values for the specified variables)
 list(measurements = measurements, aggregated_measures = aggregated_measures)
 }
