@@ -1,8 +1,18 @@
 Code book
 =========================
-    
-Raw data
--------------------------  
+ 
+Introduction
+-------------------------   
+
+The data transformation process done by run_analysis.R is build not upon the raw signals files (**train/Inertial Signals/** and **test/Inertial Signals/**), but the **train/** and **test/** files, meaning on the variables calculated for each obeservation. Below in the section **Raw data and variables build upon it (Input Data)** the process is described based on the documentation found in the original data set.  
+
+The section **Output data (final tidy data set)** describes the final tidy set.  
+
+The section **Study design** describes the processing steps done in script run_analysis.R.    
+
+
+Raw data and variables build upon it (Input Data)
+--------------------------------------------------    
 
 The raw data is build from accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ.
 Based on this signals a 561-feature vector was build with time and frequency domain variables. 
@@ -38,10 +48,10 @@ fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fB
 
 
 Variables filtered out for the purpose of preparing the tidy data set
--------------------------  
+--------------------------------------------------   
 The processing steps of the analysis were performed only on mean (mean()) and standard deviation (std()) variables build upon the signals above.
 
-The complete list of variables found in input files (**bold below means used to calculate final data set**):
+The complete list of variables found in input files (**bold below means used to calculate the final data set**):
 
 Variable name  | Description
 ------------- | -------------
@@ -70,7 +80,7 @@ Variables were normalized and bounded within [-1,1].
 
 
 
-Output data
+Output data (final tidy data set)
 =========================
 
 The final tidy set contains one row for each subject and each activity (including the combinations of actvitity and subject not found in the the raw data, set then to **NA**). Because there were 30 subjects and 6 activities the number of rows is 30 x 6 = 180.
@@ -79,7 +89,7 @@ There are 2 types of columns:
 * Dimension (mean of the measures were calculated grouping on them)
       * Subject - who was performing this activity (Values: 1 -30)
       * Activity - what kind of activity was performed (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING)
-* Average mean variables and standard deviation variables. The **t** Variables are in time domain, whereas the **f** in frequency domain (FFT was aplied to them). The **XYZ** denote the direction of the 3-axial signals. There are 33 standard deviation variables and 33 mean variables.
+* Average mean variables and standard deviation variables. The **t** Variables are in time domain, whereas the **f** in frequency domain (FFT was aplied to them). The **XYZ** denote the direction of the 3-axial signals. There are 33 averages (grouped by Subject, Activity) for standard deviation variables  and 33 averages (grouped by Subject, Activity) for mean variables.
 * Therefore the number of columns in the tidy data set is 2 + 33 + 33 = **68**
 
 
