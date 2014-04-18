@@ -22,7 +22,7 @@ activity_labels <- read.table("activity_labels.txt", col.names=c("activity_id","
 
 # load the features, do not convert the second columns to a factor
 features <- read.table("features.txt", col.names=c("feature_id","feature_name"),  stringsAsFactors=FALSE)
-# filter onyl the std() and mean(9 measures)
+# filter onyl the std() and mean()  measures
 features <- features[ features$feature_id %in% grep("mean\\(\\)|std\\(\\)",features$feature_name, value = FALSE), ]
 
 ## Load and merge the subject ids
